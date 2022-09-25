@@ -1,0 +1,11 @@
+/build
+/node_modules
+/public
+
+.gitignore
+.prettierignore
+.prettierrc.json
+jsconfig.js
+package-lock.json
+package.json
+READMD.md
