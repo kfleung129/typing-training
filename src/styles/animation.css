@@ -1,0 +1,17 @@
+#pop1 {
+  animation: popanddown1 0.2s ease-in;
+}
+
+#pop2 {
+  animation: popanddown2 0.2s ease-in;
+}
+
+@keyframes popanddown1 {
+  from {position: relative; top: 0px;text-shadow: 2px 2px #FF0000;}
+  to {position: relative; bottom: 3px;} 
+}
+
+@keyframes popanddown2 {
+  from {position: relative; top: 0px;text-shadow: 2px 2px gold;}
+  to {position: relative; bottom: 3px;} 
+}

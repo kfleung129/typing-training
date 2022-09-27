@@ -1,73 +1,56 @@
 import { useState, useEffect, useRef } from 'react';
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
+import { IoReload } from 'react-icons/io5';
+
+import '../styles/animation.css';
 
 const styles = {
     display: 'flexWrap',
-    marginTop: '20px',
-    marginBottom: '40px',
+    marginTop: '50px',
     height: '400px',
     padding: '30px',
     color: 'gray',
     fontSize: '1.5rem',
-    wordWrap: 'break-word',
-    whiteSpace: 'none',
+    position: 'relative',
 };
 
 function MainText(props) {
-    let [same, setSame] = useState(false);
     let [index, setIndex] = useState(0);
-    const prevText = useRef('');
+    let [lastIndex, setLastIndex] = useState(-1);
 
     useEffect(() => {
         const idx = props.text.length - 1;
-        let isEmpty;
-        if (!props.text[idx] && !props.words[idx]) {
-            resetColor();
-            return;
-        }
-        if (prevText.current.length > idx + 1) {
-            isEmpty = props.text[idx] == ' ' && props.words[idx] == ' ';
-            changeColor(
-                props.text[idx] === props.words[idx],
-                false,
-                isEmpty,
-                idx
-            );
-            prevText.current = props.text;
-            return;
-        }
-        isEmpty = props.text[idx] == ' ' && props.words[idx] == ' ';
-        changeColor(props.text[idx] === props.words[idx], true, isEmpty, idx);
-        prevText.current = props.text;
-    }, [props.text]);
+        changeColor(idx);
 
-    const resetColor = () => {
-        let letters = document.getElementsByClassName('letter');
-        for (let i = 0; i < letters.length; i++) {
-            letters[i].style.color = 'gray';
+    }, [props.text, props.reload]);
+
+    const changeColor = (idx) => {
+        for (let i = lastIndex + 1; i < idx + 1; i++) {
+            document.getElementsByClassName('letter')[i].id = props.text[i] === props.words[i] ? 'pop1' : 'pop2';
+            document.getElementsByClassName('letter')[i].style.color = props.text[i] === props.words[i] ? '#FFFA8A' : '#F94400';
         }
-        setIndex(0);
+        for (let i = idx + 1; i < lastIndex + 1; i++) {
+            document.getElementsByClassName('letter')[i].style.color = 'gray';
+            document.getElementsByClassName('letter')[i].id = '';
+        }
+        setLastIndex(idx);
     };
 
-    const changeColor = (flag, isNext, isEmpty, idx) => {
-        setSame(flag);
-        if (!isNext) {
-            document.getElementsByClassName('letter')[idx + 1].style.color =
-                'gray';
-        } else {
-            document.getElementsByClassName('letter')[idx].style.color = flag
-                ? 'yellow'
-                : 'red';
+    const reload = () => {
+        for (let i = 0; i < props.words.length; i++) {
+            document.getElementsByClassName('letter')[i].style.color = 'gray';
+            document.getElementsByClassName('letter')[i].id = '';
         }
-    };
+    }
 
     return (
         <Box sx={styles}>
-            {props.wordsComponent}
-            <Box>&nbsp;</Box>
-            <Box>{same ? 'True' : 'False'}</Box>
-            <Box>&nbsp;</Box>
-            <Box>{props.text}</Box>
+            <IconButton onClick={(e) => props.reload()} color="primary">
+                <IoReload/>
+            </IconButton>
+            <Box>
+                {props.wordsComponent}
+            </Box>
         </Box>
     );
 }

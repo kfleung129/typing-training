@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 const styles = {
     display: 'flex',
     flexDirection: 'column',
-    margin: '40px',
+    margin: '80px',
 };
 
 function CommonLayout(props) {
