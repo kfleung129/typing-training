@@ -7,33 +7,24 @@ import CommonLayout from './layout/CommonLayout';
 import Header from './components/Header';
 import Type from './components/Type';
 import MainText from './components/MainText';
+import Letter from './components/Letter';
 
 function App() {
     let [text, setText] = useState('');
-    let [words, setWords] = useState('');
-    let [wordsComponent, setWordsComponent] = useState([]);
+    let [wordsArr, setWordsArr] = useState([]);
     let [reloadFlag, setReload] = useState(false);
-    
-    useEffect(() => {
-        let wordsComponent = [];
-        let words = '';
-        for (let i = 0; i < NUM_OF_WORD; i++) {
-            const word = faker.word.noun();
-            const idx = 0;
-            words += word + ' ';
-            wordsComponent.push(
-                <>
-                    <span className="word">
-                        {[...word, ' '].map((letter, index) => (
-                            <span className={'letter'}>{letter}</span>
-                        ))}
-                    </span>
-                </>
-            );
-        }
-        setWords(words);
-        setWordsComponent(wordsComponent);
 
+    useEffect(() => {
+        let wordsArr = [];
+        for (let i = 0; i < NUM_OF_WORD; i++) {
+            let arr = [];
+            let word = faker.word.noun() + ' ';
+            wordsArr = [
+                ...wordsArr,
+                ...[...word].map((letter) => ({ value: letter })),
+            ];
+        }
+        setWordsArr(wordsArr);
     }, [reloadFlag]);
 
     function changeText(text) {
@@ -42,22 +33,18 @@ function App() {
 
     function reload() {
         setReload(!reloadFlag);
-    } 
+    }
 
     return (
         <CommonLayout>
             <Header />
             <MainText
                 text={text}
-                words={words}
-                wordsComponent={wordsComponent}
+                wordsArr={wordsArr}
                 reload={reload}
                 reloadFlag={reloadFlag}
             />
-            <Type 
-                changeText={changeText}
-                reloadFlag={reloadFlag}
-            />
+            <Type changeText={changeText} reloadFlag={reloadFlag} />
         </CommonLayout>
     );
 }

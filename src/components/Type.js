@@ -6,23 +6,24 @@ function Type(props) {
 
     useEffect(() => {
         setValue('');
-        
-    }, [props.reloadFlag])
+    }, [props.reloadFlag]);
 
     const changeText = (text) => {
         setValue(text);
         props.changeText(text);
-    }
+    };
 
     return (
         <Box>
             <TextField
+                novalidate
                 id="standard-basic"
                 variant="standard"
                 color="primary"
                 value={value}
                 onChange={(e) => changeText(e.target.value)}
-                inputRef={input => input && input.focus()}
+                inputRef={(input) => input && input.focus()}
+                inputProps={{ style: { color: 'white' }, spellCheck: false }}
                 sx={{ width: '280px', marginLeft: '30px' }}
             />
         </Box>
