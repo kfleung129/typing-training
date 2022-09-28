@@ -55,6 +55,7 @@ function App() {
             />
             <Type 
                 changeText={changeText}
+                reloadFlag={reloadFlag}
             />
         </CommonLayout>
     );

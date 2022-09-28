@@ -19,10 +19,16 @@ function MainText(props) {
     let [lastIndex, setLastIndex] = useState(-1);
 
     useEffect(() => {
+        reload();
+
+    }, [props.reloadFlag]);
+
+    useEffect(() => {
         const idx = props.text.length - 1;
         changeColor(idx);
+        console.log('text render');
 
-    }, [props.text, props.reload]);
+    }, [props.text]);
 
     const changeColor = (idx) => {
         for (let i = lastIndex + 1; i < idx + 1; i++) {
@@ -41,6 +47,8 @@ function MainText(props) {
             document.getElementsByClassName('letter')[i].style.color = 'gray';
             document.getElementsByClassName('letter')[i].id = '';
         }
+        setIndex(0);
+        setLastIndex(-1);
     }
 
     return (
