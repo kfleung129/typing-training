@@ -52,6 +52,7 @@ function App() {
                 words={words}
                 wordsComponent={wordsComponent}
                 reload={reload}
+                reloadFlag={reloadFlag}
             />
             <Type 
                 changeText={changeText}

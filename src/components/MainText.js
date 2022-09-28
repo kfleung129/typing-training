@@ -26,7 +26,6 @@ function MainText(props) {
     useEffect(() => {
         const idx = props.text.length - 1;
         changeColor(idx);
-        console.log('text render');
 
     }, [props.text]);
 
