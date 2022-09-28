@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/typing-training/static/css/main.7a218fdb.css",
-    "main.js": "/typing-training/static/js/main.a6ccaead.js",
+    "main.js": "/typing-training/static/js/main.d33e5377.js",
     "static/js/787.7328f4f6.chunk.js": "/typing-training/static/js/787.7328f4f6.chunk.js",
     "index.html": "/typing-training/index.html",
     "main.7a218fdb.css.map": "/typing-training/static/css/main.7a218fdb.css.map",
-    "main.a6ccaead.js.map": "/typing-training/static/js/main.a6ccaead.js.map",
+    "main.d33e5377.js.map": "/typing-training/static/js/main.d33e5377.js.map",
     "787.7328f4f6.chunk.js.map": "/typing-training/static/js/787.7328f4f6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7a218fdb.css",
-    "static/js/main.a6ccaead.js"
+    "static/js/main.d33e5377.js"
   ]
 }
